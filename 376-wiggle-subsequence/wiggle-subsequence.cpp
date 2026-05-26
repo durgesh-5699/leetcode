@@ -1,6 +1,7 @@
 class Solution {
 public:
     int wiggleMaxLength(vector<int>& nums) {
+        //same question ko peak and valley element se bhi kr skte hai...
         int n=nums.size();
         if(n==0) return 0;
         if(n==1) return 1;
