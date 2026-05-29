@@ -26,11 +26,34 @@ public:
         return dp[n][cell]=ans;
     }
     int knightDialer(int n){
+        // int ans=0;
+        // memset(dp,-1,sizeof(dp));
+        // for(int cell=0;cell<=9;cell++){
+        //     ans = (ans + solve(n-1,cell))%mod;
+        // }
+
         int ans=0;
+        int dp[n][10];
         memset(dp,-1,sizeof(dp));
+
         for(int cell=0;cell<=9;cell++){
-            ans = (ans + solve(n-1,cell))%mod;
+            dp[0][cell]=1;
         }
+        
+        for(int i=1;i<=n-1;i++){
+            for(int cell=0;cell<=9;cell++){
+                int val=0;
+                for(int next : v[cell]){
+                    val = (val+dp[i-1][next])%mod;
+                }
+                dp[i][cell] = val;
+            }
+        }
+
+        for(int cell=0;cell<=9;cell++){
+            ans = (ans+dp[n-1][cell])%mod;
+        }
+
         return ans;
     }
 };
